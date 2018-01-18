@@ -350,6 +350,8 @@ a.wpmadashicons:hover { text-decoration:none;color: '.$colors[2].'!important; }
             'text_maintenance' => __('Come back quickly!', 'wp-maintenance'),
             'userlimit' => 'administrator',
             'image' => WP_PLUGIN_URL.'/wp-maintenance/images/default.png',
+            'image_width' => 310,
+            'image_height' => 185,
             'font_title' => 'PT Sans',
             'font_title_size' => 40,
             'font_title_weigth' => 'normal',
@@ -372,8 +374,6 @@ a.wpmadashicons:hover { text-decoration:none;color: '.$colors[2].'!important; }
             'color_button_onclick' => '#333333',
             'color_button_hover' => '#cccccc',
             'color_button' => '#1e73be',
-            'image_width' => 250,
-            'image_height' => 100,
             'newletter' => 0,
             'active_cpt' => 0,
             'newletter_font_text' => 'PT Sans',
@@ -810,14 +810,10 @@ a.wpmadashicons:hover { text-decoration:none;color: '.$colors[2].'!important; }
                 $BottomSocialIcons = '';
             }
             if( isset($paramMMode['image']) && $paramMMode['image'] ) {
-                if( ini_get('allow_url_fopen')==1) {
-                    $image_path = str_replace(get_bloginfo('url'), ABSPATH, $paramMMode['image']);
-                    list($logoWidth, $logoHeight, $logoType, $logoAttr) = getimagesize($image_path);
-                } else {
-                    $width = 150;
-                    $height = 80;
-                }
-                $LogoImage = '<div id="logo"><img src="'.$paramMMode['image'].'" width="'.$logoWidth.'" height="'.$logoHeight.'" alt="'.get_bloginfo( 'name', 'display' ).' '.get_bloginfo( 'description', 'display' ).'" title="'.get_bloginfo( 'name', 'display' ).' '.get_bloginfo( 'description', 'display' ).'" /></div>';
+                if( empty($paramMMode['image_width']) ) { $paramMMode['image_width'] = 310; }
+                if( empty($paramMMode['image_height']) ) { $paramMMode['image_height'] = 185; }
+                $LogoImage = '<div id="logo"><img src="'.$paramMMode['image'].'" width="'.$paramMMode['image_width'].'" height="'.$paramMMode['image_height'].'" alt="'.get_bloginfo( 'name', 'display' ).' '.get_bloginfo( 'description', 'display' ).'" title="'.get_bloginfo( 'name', 'display' ).' '.get_bloginfo( 'description', 'display' ).'" /></div>';
+                
             } else {
                 $LogoImage = '';
             }
